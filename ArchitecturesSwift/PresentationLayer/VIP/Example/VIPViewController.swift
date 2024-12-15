@@ -8,12 +8,11 @@
 import UIKit
 
 protocol VIPViewProtocol: AnyObject {
-    func displaySomething(viewModel: VIP.Greeting.ViewModel)
+    func displayGreeting(viewModel: VIP.Greeting.ViewModel)
 }
 
 final class VIPViewController: UIViewController {
     // MARK: - Dependencies
-    private let router: VIPRouterProtocol
     private let interactor: VIPInteractorProtocol
     
     private lazy var label: UILabel = {
@@ -30,10 +29,7 @@ final class VIPViewController: UIViewController {
     }()
 
     // MARK: - Init
-    init(
-        router: VIPRouterProtocol,
-        interactor: VIPInteractorProtocol
-    ) {
+    init(interactor: VIPInteractorProtocol) {
         self.router = router
         self.interactor = interactor
         super.init(nibName: nil, bundle: nil)
@@ -62,7 +58,7 @@ final class VIPViewController: UIViewController {
 
 // MARK: - VIPViewProtocol
 extension VIPViewController: VIPViewProtocol {
-    func displaySomething(viewModel: VIP.Greeting.ViewModel) {
+    func displayGreeting(viewModel: VIP.Greeting.ViewModel) {
         label.text = viewModel.text
     }
 }

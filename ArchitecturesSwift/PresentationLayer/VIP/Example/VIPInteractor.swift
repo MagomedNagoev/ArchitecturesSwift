@@ -32,6 +32,6 @@ extension VIPInteractor: VIPInteractorProtocol {
         let person = worker.getPerson()
 
         let response = VIP.Greeting.Response(person: person)
-        presenter.presentSomething(response: response)
+        presenter.presentGreeting(response: response)
     }
 }

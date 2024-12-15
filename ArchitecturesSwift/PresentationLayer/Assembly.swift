@@ -23,7 +23,6 @@ class Assembly {
     
     static func createVIP() -> UIViewController {
         let worker = VIPWorker(userService: UserServiceStub())
-        let router = VIPRouter()
         let presenter = VIPPresenter()
 
         let interactor = VIPInteractor(
@@ -31,10 +30,7 @@ class Assembly {
             presenter: presenter
         )
 
-        let viewController = VIPViewController(
-            router: router,
-            interactor: interactor
-        )
+        let viewController = VIPViewController(interactor: interactor)
 
         presenter.view = viewController
         router.source = viewController
