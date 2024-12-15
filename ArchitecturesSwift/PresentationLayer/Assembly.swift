@@ -33,7 +33,6 @@ class Assembly {
         let viewController = VIPViewController(interactor: interactor)
 
         presenter.view = viewController
-        router.source = viewController
         return viewController
     }
     

@@ -30,7 +30,6 @@ final class VIPViewController: UIViewController {
 
     // MARK: - Init
     init(interactor: VIPInteractorProtocol) {
-        self.router = router
         self.interactor = interactor
         super.init(nibName: nil, bundle: nil)
     }

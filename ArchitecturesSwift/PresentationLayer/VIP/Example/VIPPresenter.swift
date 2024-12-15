@@ -18,7 +18,7 @@ final class VIPPresenter {
 // MARK: VIPPresenterProtocol
 extension VIPPresenter: VIPPresenterProtocol {
     func presentGreeting(response: VIP.Greeting.Response) {
-        let greeting = "Hello" + " " + response.person.firstName + " " + response.person.lastName
+        let greeting = "Hello," + " " + response.person.firstName + " " + response.person.lastName + "!"
 
         let viewModel = VIP.Greeting.ViewModel(text: greeting)
         view?.displayGreeting(viewModel: viewModel)

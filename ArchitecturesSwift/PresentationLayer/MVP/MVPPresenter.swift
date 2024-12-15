@@ -26,7 +26,7 @@ final class MVPPresenter : MVPPresenterProtocol {
 
     func presentGreeting() {
         let person = userService.getUser()
-        let greeting = "Hello" + " " + person.firstName + " " + person.lastName
+        let greeting = "Hello," + " " + person.firstName + " " + person.lastName + "!"
         view?.displayGreeting(greeting: greeting)
     }
 }

@@ -51,7 +51,7 @@ final class MVCViewController: UIViewController {
 
     private func displayGreeting() {
         let person = userService.getUser()
-        let greeting = "Hello" + " " + person.firstName + " " + person.lastName
+        let greeting = "Hello," + " " + person.firstName + " " + person.lastName + "!"
         label.text = greeting
     }
 }
