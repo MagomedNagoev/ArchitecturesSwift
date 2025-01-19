@@ -22,6 +22,10 @@ final class MainRouter: MainRouterProtocol {
             source?.navigationController?.pushViewController(Assembly.createMVP(), animated: true)
         case .vip:
             source?.navigationController?.pushViewController(Assembly.createVIP(), animated: true)
+        case .mvvm_sui:
+            source?.navigationController?.pushViewController(Assembly.createMVVM(), animated: true)
+        case .mvvm_uiKit:
+            source?.navigationController?.pushViewController(Assembly.createMVVM2(), animated: true)
         }
     }
 }

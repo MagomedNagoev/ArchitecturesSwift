@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class Assembly {
     static func createMVC() -> UIViewController {
@@ -33,6 +34,23 @@ class Assembly {
         let viewController = VIPViewController(interactor: interactor)
 
         presenter.view = viewController
+        return viewController
+    }
+    
+    static func createMVVM() -> UIViewController {
+        let viewModel = MVVMSviftUIViewModel(userService: UserServiceStub())
+        
+        let swiftUIView = MVVMSwiftUIView(viewModel: viewModel)
+        let hostingController = UIHostingController(rootView: swiftUIView)
+        hostingController.navigationItem.title = "MVVM + SwiftUI"
+        
+        return hostingController
+    }
+    
+    static func createMVVM2() -> UIViewController {
+        let viewModel = MVVMViewModel(userService: UserServiceStub())
+        let viewController = MVVMViewController(viewModel: viewModel)
+
         return viewController
     }
     

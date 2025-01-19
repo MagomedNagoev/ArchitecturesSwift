@@ -14,6 +14,8 @@ enum Main {
             case mvc
             case mvp
             case vip
+            case mvvm_sui
+            case mvvm_uiKit
         }
         
         struct Request { }
