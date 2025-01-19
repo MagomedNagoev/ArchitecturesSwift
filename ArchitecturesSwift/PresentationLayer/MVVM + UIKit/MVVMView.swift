@@ -9,7 +9,9 @@ import UIKit
 
 final class MVVMViewController: UIViewController {
     private var viewModel: MVVMViewModelProtocol
-
+    
+    var tapLabel: ((String) -> Void)?
+    
     private lazy var label: UILabel = {
         let label = UILabel(
             frame: .init(
@@ -19,6 +21,7 @@ final class MVVMViewController: UIViewController {
                 height: 50
             )
         )
+        label.isUserInteractionEnabled = true
         label.textAlignment = .center
         return label
     }()
@@ -39,8 +42,15 @@ final class MVVMViewController: UIViewController {
         super.viewDidLoad()
         setupView()
 
-        let output = viewModel.transform(input: .init())
-        label.text = output.greetingText
+        tapLabel = { [weak self] text in
+            self?.viewModel.updateText(currentText: text) { [weak self] greeting in
+                self?.label.text = greeting
+            }
+        }
+        
+        viewModel.presentGreeting { [weak self] greeting in
+            self?.label.text = greeting
+        }
     }
     
     private func setupView() {
@@ -49,5 +59,11 @@ final class MVVMViewController: UIViewController {
         
         view.addSubview(label)
         label.center = view.center
+        label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
+    }
+    
+    @objc
+    func handleTap() {
+        tapLabel?(label.text ?? "")
     }
 }

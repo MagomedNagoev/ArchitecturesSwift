@@ -10,7 +10,8 @@ import Combine
 
 class MVVMSviftUIViewModel: ObservableObject {
     private let userService: UserServiceProtocol
-    @Published var text: String = "Hello, MVVM + SwiftUI!"
+    
+    @Published var text: String = ""
     
     init(userService: UserServiceProtocol) {
         self.userService = userService
@@ -20,6 +21,10 @@ class MVVMSviftUIViewModel: ObservableObject {
     func presentGreeting() {
         let person = userService.getUser()
         text = "Hello," + " " + person.firstName + " " + person.lastName + "!"
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+            self?.text = "Hello, Aziz!"
+        }
     }
 }
 

@@ -8,32 +8,25 @@
 import Foundation
 
 protocol MVVMViewModelProtocol {
-    func transform(input: MVVMViewModel.Input) -> MVVMViewModel.Output
+    func presentGreeting(compleation: @escaping (String) -> Void)
+    func updateText(currentText: String, compleation: @escaping (String) -> Void)
 }
 
-final class MVVMViewModel {
+final class MVVMViewModel: MVVMViewModelProtocol {
     private let userService: UserServiceProtocol
-
+    
     init(userService: UserServiceProtocol) {
         self.userService = userService
     }
-
-    func fetchText() -> String {
+    
+    func presentGreeting(compleation: @escaping (String) -> Void){
         let person = userService.getUser()
         let greeting = "Hello," + " " + person.firstName + " " + person.lastName + "!"
         
-        return greeting
-    }
-}
-
-extension MVVMViewModel: MVVMViewModelProtocol {
-    struct Input { }
-
-    struct Output {
-        let greetingText: String
+        compleation(greeting)
     }
     
-    func transform(input: Input) -> Output {
-        return Output(greetingText: fetchText())
+    func updateText(currentText: String, compleation: @escaping (String) -> Void) {
+        compleation(currentText + "!")
     }
 }

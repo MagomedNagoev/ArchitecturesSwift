@@ -28,5 +28,9 @@ final class MVPPresenter : MVPPresenterProtocol {
         let person = userService.getUser()
         let greeting = "Hello," + " " + person.firstName + " " + person.lastName + "!"
         view?.displayGreeting(greeting: greeting)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+            self?.view?.displayGreeting(greeting: "Hi, Aziz!")
+        }
     }
 }
