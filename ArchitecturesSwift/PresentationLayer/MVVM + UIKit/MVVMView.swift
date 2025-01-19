@@ -42,14 +42,14 @@ final class MVVMViewController: UIViewController {
         super.viewDidLoad()
         setupView()
 
-        tapLabel = { [weak self] text in
-            self?.viewModel.updateText(currentText: text) { [weak self] greeting in
-                self?.label.text = greeting
+        tapLabel = { text in
+            self.viewModel.updateText(currentText: text) { greeting in
+                self.label.text = greeting
             }
         }
         
-        viewModel.presentGreeting { [weak self] greeting in
-            self?.label.text = greeting
+        viewModel.presentGreeting { greeting in
+            self.label.text = greeting
         }
     }
     

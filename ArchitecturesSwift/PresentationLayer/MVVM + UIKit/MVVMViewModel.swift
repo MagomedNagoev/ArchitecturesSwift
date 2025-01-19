@@ -8,8 +8,8 @@
 import Foundation
 
 protocol MVVMViewModelProtocol {
-    func presentGreeting(compleation: @escaping (String) -> Void)
-    func updateText(currentText: String, compleation: @escaping (String) -> Void)
+    func presentGreeting(completion: (String) -> Void)
+    func updateText(currentText: String, completion: (String) -> Void)
 }
 
 final class MVVMViewModel: MVVMViewModelProtocol {
@@ -19,14 +19,14 @@ final class MVVMViewModel: MVVMViewModelProtocol {
         self.userService = userService
     }
     
-    func presentGreeting(compleation: @escaping (String) -> Void){
+    func presentGreeting(completion: (String) -> Void) {
         let person = userService.getUser()
         let greeting = "Hello," + " " + person.firstName + " " + person.lastName + "!"
         
-        compleation(greeting)
+        completion(greeting)
     }
     
-    func updateText(currentText: String, compleation: @escaping (String) -> Void) {
-        compleation(currentText + "!")
+    func updateText(currentText: String, completion: (String) -> Void) {
+        completion(currentText + "!")
     }
 }
